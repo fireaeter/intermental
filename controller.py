@@ -46,4 +46,5 @@ class Entries_controller(object):
 class Entry_controller(object):
     def on_get(self, req, resp, login, header):
         entry = Entry()
-        resp.body = json.dumps(entry.get(login, header))
+        entry = entry.get(login, header)
+        resp.body = entry.decode()
