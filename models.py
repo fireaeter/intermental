@@ -51,17 +51,19 @@ class Users(object):
             return True
 
 class Entry(object):
-    def check(self, username, entry):
-        self.entry = json.dumps(api.files_ls("/user/%s/entry" % username))
-        self.entry = json.loads(self.entry)['Entries']
-        self.entry_list = []
-        for i in range (len(self.entry)):
-            self.entry_list.append(self.entry[i]['Name'])
-        # смотрим есть ли юзер среди всех
-        if entry in self.entry_list:
-            return True
-        else:
-            return False
+    def check(self, login, entry):
+        self.user_exist = User.check(login)
+        if self.user_exist is True:
+            self.entry = json.dumps(api.files_ls("/user/%s/entry" % login))
+            self.entry = json.loads(self.entry)['Entries']
+            self.entry_list = []
+            for i in range (len(self.entry)):
+                self.entry_list.append(self.entry[i]['Name'])
+            # смотрим есть ли юзер среди всех
+            if entry in self.entry_list:
+                return True
+            else:
+                return False
     def get(self, login, header):
         if self.check(login, header) is True:
             self.entry = api.files_read("/user/%s/entry/%s" % (login, header))
@@ -79,3 +81,14 @@ class Entries(object):
             return self.user_entries_in_list
         else:
             return False
+class All_Entries(object):
+    def get(self):
+        self.all_entries = api.files_read("/entry_list.json")
+        self.all_entries_in_json = json.loads(self.all_entries.decode())
+        self.len_json_entries = len(self.all_entries_in_json)
+        self.all_entries_in_list = []
+        self.current_entry = str()
+        for i in range(self.len_json_entries):
+            self.current_entry = api.files_read(self.all_entries_in_json[i]['path'])
+            self.all_entries_in_list.append(self.current_entry.decode())
+        return self.all_entries_in_list
