@@ -3,6 +3,7 @@ from models import User
 from models import Users
 from models import Entries
 from models import Entry
+from models import All_Entries
 import falcon
 import ipfsapi
 import json
@@ -48,3 +49,8 @@ class Entry_controller(object):
         entry = Entry()
         entry = entry.get(login, header)
         resp.body = entry.decode()
+
+class All_Entries_controller(object):
+    def on_get(self, req, resp):
+        entries = All_Entries().get()
+        resp.body = json.dumps(entries)
