@@ -8,6 +8,7 @@ from marshmallow import (
 class UserSchema(Schema):
     login = fields.String(required=True)
     password = fields.String(required=True)
+
     @validates_schema
     def validate_user_data(self, data):
         if len(data['login']) < 3:
