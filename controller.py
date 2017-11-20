@@ -1,9 +1,11 @@
 from validator import UserSchema
+from validator import EntrySchema
 from models import User
 from models import Users
 from models import Entries
 from models import Entry
 from models import All_Entries
+from models import Search
 import falcon
 import ipfsapi
 import json
@@ -25,6 +27,17 @@ def validate_user(req, resp, resource, params):
         users.add(data)
         resp.status = falcon.HTTP_200
 
+def validate_entry(req, resp, resource, params):
+    data = req.stream.read()
+    validator = EntrySchema()
+    result = validator.load(json.loads(data.decode()))
+    result_errors_length = len(result.errors)
+    err = json.dumps(result.errors)
+    if result_errors_length is not 0:
+        resp.status = falcon.HTTP_400
+    else:
+        resp.status = falcon.HTTP_200
+
 class Users_controller(object):
     def on_get(self, req, resp):
         users = Users()
@@ -43,6 +56,9 @@ class Entries_controller(object):
     def on_get(self, req, resp, login):
         _entries = Entries()
         resp.body = json.dumps(_entries.get(login))
+    @falcon.before(validate_entry)
+    def on_post(self, req, resp, login):
+        pass
 
 class Entry_controller(object):
     def on_get(self, req, resp, login, header):
@@ -54,3 +70,9 @@ class All_Entries_controller(object):
     def on_get(self, req, resp):
         entries = All_Entries().get()
         resp.body = json.dumps(entries)
+
+class _Search(object):
+    def on_get(self, req, resp, query):
+        search = Search(query)
+        result = search.get()
+        resp.body = json.dumps(result)
