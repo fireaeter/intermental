@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.0.2
+Исправлено:
+- lib/blockchain в связке с IPFS
+
+
 ## 0.0.1
 Добавлено:
 - lib/blockchain

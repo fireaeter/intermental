@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-
+import io
 import os
 from sys import getsizeof
 import hashlib
 import json
 from typing import Dict, List
 from datetime import datetime
+import ipfsapi
 from lib.exceptions import RuntimeException, BlockchainException
 
 
@@ -92,32 +93,36 @@ class _Meta(object):
 
 
 class Chain(object):
+    ipfs: ipfsapi.Client = None
+    ipfs_dir: str = None
     meta: Dict[str, _Meta] = {}
     index = 0
     iname: str = None  # first bock name
     block: Block = None  # last_block
 
-    def __init__(self, blockchain_dir: str, password: str):
+    def __init__(self, ipfs_client: ipfsapi.Client, user_dir: str, password: str):
         _Body.PASSWORD = password.encode()
+        self.ipfs = ipfs_client
+        self.ipfs_dir = user_dir
         self.index = 0
-        self.iname = os.path.basename(blockchain_dir)
-        os.chdir(os.path.realpath(blockchain_dir))
+        self.iname = os.path.basename(user_dir)
         self._init_meta()
 
     def _init_meta(self):
         self.meta = {}
-        files = [
-            f for f in os.listdir('.') if os.path.isfile(os.path.join('.', f))
-        ]
-        for file in files:
-            with open(file) as fp:
-                d = json.load(fp)
-                self.meta[d['link']] = _Meta(d['sign'], file)
+        entries = self.ipfs.files_ls(self.ipfs_dir)['Entries']
+        if entries is None:
+            return
+        for entry in entries:
+            path = "{}/{}".format(self.ipfs_dir, entry['Name'])
+            string = self.ipfs.files_read(path)
+            _dict = json.loads(string)
+            self.meta[_dict['link']] = _Meta(_dict['sign'], entry['Name'])
 
     def add(self, data: dict):
         self.index = 0
         blk = Block(data)
-        if blk.link is None and not os.path.isfile(self.iname):
+        if blk.link is None and not len(self.meta):
             self._write(blk)
         else:
             self._check_duplicates(blk)
@@ -157,8 +162,10 @@ class Chain(object):
         return res
 
     def get(self, sign: str) -> dict:
-        blk = self._get_block(sign)
-        return blk.body.content
+        for meta in self.meta.values():
+            if meta.sign == sign:
+                blk = self._get_block(meta.file)
+                return blk.body.content
 
     def _init_block(self, meta_index=None):
         if meta_index not in self.meta:
@@ -168,21 +175,22 @@ class Chain(object):
         if meta_index != self.block.link:
             raise BlockchainException("Data structure violation")
 
-    def _get_block(self, sign: str) -> Block:
-        with open(sign, 'rb') as fp:
-            _dict = json.load(fp)
-            blk = Block(_dict['body'])
-            blk.link = _dict['link']
-            blk.date = _dict['date']
-            return blk
+    def _get_block(self, file: str) -> Block:
+        string = self.ipfs.files_read("{}/{}".format(self.ipfs_dir, file))
+        _dict = json.loads(string)
+        blk = Block(_dict['body'])
+        blk.link = _dict['link']
+        blk.date = _dict['date']
+        return blk
 
     def _write(self, blk: Block):
         file_name = self.iname if blk.link is None else blk.body.sign
-        with open(file_name, 'wb') as fp:
-            fp.write(json.dumps({
-                "date": blk.date,
-                "link": blk.link,
-                "body": blk.body.content,
-                "sign": blk.body.sign
-            }).encode())
-        self.meta[blk.link] = _Meta(blk.body.sign, file_name)
+        path = '{}/{}.json'.format(self.ipfs_dir, file_name)
+        bytesio = io.BytesIO(json.dumps({
+            "date": blk.date,
+            "link": blk.link,
+            "body": blk.body.content,
+            "sign": blk.body.sign
+        }).encode())
+        self.ipfs.files_write(path, bytesio, create=True)
+        self.meta[blk.link] = _Meta(blk.body.sign, file_name + ".json")
