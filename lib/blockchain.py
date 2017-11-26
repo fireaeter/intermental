@@ -22,8 +22,6 @@ class _Body(object):
         self.__content = content
         self.__bytes = json.dumps(self.__content).encode()
 
-        if _Body.PASSWORD is None:
-            raise RuntimeException("No password. Init Chain first")
         if len(content) == 0:
             raise RuntimeException("Block body is empty")
         if self.size > _Body.LIMIT:
@@ -42,6 +40,8 @@ class _Body(object):
 
     @property
     def sign(self) -> str:
+        if _Body.PASSWORD is None:
+            raise RuntimeException("No password. Init Chain first")
         if self.__sign is None:
             self.__sign = hashlib.sha256(self.__bytes + _Body.PASSWORD).hexdigest()
         return self.__sign
@@ -100,8 +100,9 @@ class Chain(object):
     iname: str = None  # first bock name
     block: Block = None  # last_block
 
-    def __init__(self, ipfs_client: ipfsapi.Client, user_dir: str, password: str):
-        _Body.PASSWORD = password.encode()
+    def __init__(self, ipfs_client: ipfsapi.Client, user_dir: str, password: str = None):
+        if password:
+            _Body.PASSWORD = password.encode()
         self.ipfs = ipfs_client
         self.ipfs_dir = user_dir
         self.index = 0
@@ -158,7 +159,7 @@ class Chain(object):
                 res.append(self.block.body.content)
             if i > offset + limit:
                 break
-            self._init_block(self.block.body.sign)
+            self._init_block(self.meta[self.block.link].sign)
         return res
 
     def get(self, sign: str) -> dict:
