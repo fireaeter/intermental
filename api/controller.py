@@ -41,6 +41,7 @@ class Entries(object):
 
     def on_post(self, req: falcon.Request, resp: falcon.Response, login):
         self.data = json.loads(req.stream.read().decode())
+        print(self.data)
         models.Entries().add(login, self.data)
 
 class Entry(object):

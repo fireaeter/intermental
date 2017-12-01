@@ -28,8 +28,10 @@ class User(object):
         self.user_exist = self.check(login)
         if self.user_exist is True: 
             chain = Chain(ipfs_client, '/intermental/%s' % login)
-            self.posts_num = ipfs_client.files_ls('/intermental/%s' % login)
-            return chain.get_range(1, 0), len(self.posts_num['Entries'])
+            self.posts_num = len(ipfs_client.files_ls('/intermental/%s' % login)['Entries'])
+            self.user_info_list = json.loads(json.dumps(chain.get_range(1, 0)))
+            self.user_info_list.append(self.posts_num)
+            return json.dumps(self.user_info_list)
         else:
             return False
     
@@ -47,7 +49,6 @@ class Users(object):
         self.data = json.loads(data.decode())
         self.login = self.data['login']
         self.password = self.data['password']
-        self.email = self.data['email']
         self.blog_name = self.data['blog_name']
         self.keywords = self.data['keywords']
         self.birthday = self.data['birthday']
@@ -58,7 +59,7 @@ class Users(object):
         else:
             # self.profile = io.BytesIO(json.dumps({'login': self.login, 'password': self.password}).encode())
             ipfs_client.files_mkdir("/intermental/%s" % self.login)
-            user_info = dict([('email', self.email), ('blog_name', self.blog_name), ('keywords', self.keywords), ('birthday', self.birthday), ('created_date', self.date)])
+            user_info = dict([('blog_name', self.blog_name), ('keywords', self.keywords), ('birthday', self.birthday), ('created_date', self.date)])
             chain = Chain(ipfs_client, '/intermental/%s' % self.login, self.password)
             chain.add(user_info)
             return True
