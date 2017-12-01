@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel='stylesheet' href='nprogress.css'/>
+    <link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">    
+    
+    <title>Title</title>
+    <style>
+        #center {
+            top: 50%;
+            /* Отступ в процентах от верхнего края окна */
+            left: 50%;
+            /* Отступ в процентах от левого края окна */
+            right: 50%;
+            width: 450px;
+            /* Ширина блока */
+            height: 450px;
+            /* Высота блока */
+            position: absolute;
+            /* Абсолютное позиционирование блока */
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="reg_modal" class="modal">
+            <div class="modal-content">
+            <h3>Регистрация</h3>
+              <div class="row">
+                  <div class="input-field col s12">
+                    <input id="login" type="text" class="validate">
+                    <label for="login">Логин</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Пароль</label>
+                  </div>
+                  <div class="input-field col s12">
+                      <input id="blog_name" type="text" class="validate">
+                      <label for="blog_name">Название блога</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="keywords" type="text" class="validate">
+                        <label for="keywords">Ключевые слова (как вас можно найти)</label>
+                      </div>
+                      <div class="input-field col s12">
+                          <input id="birthday" type="text" class="datepicker">                          
+                          <label for="password">Дата рождения</label>
+                        </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-action waves-effect waves-red btn-flat" style="color:red;">Отмена<i class="material-icons right">delete</i></a>
+              <a href="#!" id="reg_send_button" class="modal-action waves-effect waves-green btn-flat" style="color:green;">Отправить<i class="material-icons right">send</i></a>
+            </div>
+          </div>
+          <div class="container">
+            <nav style="background: white;color:black;">
+                    <div class="nav-wrapper">
+                        <ul><i id="MENU_show" class="fa fa-bars button-collapse" style="color:black;"></i></ul>
+                        <a style="color: black; font-size: 120%;font-weight: bold;" class="brand-logo center">Intermental</a>
+                    </div>
+                </nav>
+            </div>
+        <div class="container" style="padding-top:2%;">
+            <div class="row">
+                <div id="search_block">
+                    <div class="col s12" style="text-align:center;padding-top:7%;">
+                        <h4>Написать запись</h4>
+                    </div> 
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <input id="search_query" type="text">
+                        <label for="search_query">Заголовок</label>
+                    </div>
+                        <!-- <div id="editor">
+                            <p>Hello World!</p>
+                            <p>Some initial <strong>bold</strong> text</p>
+                            <p><br></p>
+                          </div> -->
+                </div>
+                    <div class="row">
+                            <div id="editor">
+                                    <p>Классно было, мы кушали мороженое и запивали чаем</p>
+                                    <p><br></p>
+                                  </div>
+                                  <div style="padding-top:2%;">
+                        <button id="search_button" class="btn waves-effect waves-light col s12 green" type="submit">Отправить
+                            <i class="material-icons right">send</i>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <script src="site.js"></script>
+    <script src='nprogress.js'></script>
+    <script src="https://cdn.quilljs.com/1.3.4/quill.js"></script>
+    
+    <!-- Initialize Quill editor -->
+    <script>
+      var quill = new Quill('#editor', {
+        theme: 'snow'
+      });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
+        <link rel='stylesheet' href='nprogress.css'/>    
+        
+        <title>Title</title>
+        <style>
+            #center {
+                top: 50%;
+                /* Отступ в процентах от верхнего края окна */
+                left: 50%;
+                /* Отступ в процентах от левого края окна */
+                right: 50%;
+                width: 450px;
+                /* Ширина блока */
+                height: 450px;
+                /* Высота блока */
+                position: absolute;
+                /* Абсолютное позиционирование блока */
+            }
+        </style>
+    </head>
+    <body>
+        <div id="load_data">
+            <div id="center">
+                    <div class="preloader-wrapper small active">
+                        <div class="spinner-layer spinner-green-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="ui_content" style="visibility:hidden;">
+                <div id="row">
+                    <div class="container">
+                        <nav style="background: white;color:black;">
+                            <div class="nav-wrapper">
+                                <ul><i id="MENU_show" class="fa fa-bars button-collapse" style="color:black;"></i></ul>
+                                <a style="color: black; font-size: 120%;font-weight: bold;" class="brand-logo center">Intermental</a>
+                            </div>
+                        </nav>
+                    </div>
+                    <div style="padding-top:50px;"></div>
+                    <div class="container">
+                            <div class="row">
+                                <div class="col s12">
+                                <ul class="tabs">
+                                    <li class="tab col s3"><a href="#posts_block">Записи</a></li>
+                                    <li class="tab col s3"><a href="#user_info_block">Информация</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col s12">
+                            <div id="content">
+                                <div id="posts_block">
+                                    <ul class="collection with-header" id="posts_list">
+                                        <li class="collection-header"><h5 id="user_header">Все записи пользователя </h5></li>
+                                    </ul>
+                                </div>
+                                <div id="user_info_block">
+                                    <div class="row">
+                                            <div class="col s12">
+                                                <div class="card">
+                                                <div class="card-content white-text">
+                                                    <span class="card-title" style="color:black;"><i class="fa fa-address-card-o"></i> Информация о пользователе</span>
+                                                    <div id="user_info" style="color:black;">
+                                                        <p></p>                                                            
+                                                        <p id="email_field" style="color:black;"><i class="fa fa-envelope"></i><strong> Email: </strong></p>
+                                                        <p></p>
+                                                        <p id="birthday_field" style="color:black;"><i class="fa fa-birthday-cake"></i><strong> День рождения: </strong></p>
+                                                        <p></p>
+                                                        <p id="created_field" style="color:black;"><i class="fa fa-check"></i><strong> Дата создания: </strong></p>
+                                                        <p></p>
+                                                        <p id="blog_field" style="color:black;"><i class="fa fa-file-text"></i><strong> Название блога: </strong></p>
+                                                        <p></p>
+                                                        <p id="key_field" style="color:black;"><i class="fa fa-key"></i><strong> Ключевые слова: </strong></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fixed-action-btn">
+                                    <a href="#google" class="btn-floating btn-waves btn-large red">
+                                      <i class="large material-icons">mode_edit</i>
+                                    </a>
+                                  </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+        <script src="site.js"></script>
+        <script src='nprogress.js'></script>
+        <script>
+            var login = getParameterByName("login");
+            get_all_user_posts(login);
+            document.getElementById("user_header").innerHTML += login;
+        </script>
+    </body>
+</html>
