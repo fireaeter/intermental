@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel='stylesheet' href='css/nprogress.css'/>
+    <link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">    
+    <title>Intermental</title>
+    <style>
+        #center {
+            top: 50%;
+            /* Отступ в процентах от верхнего края окна */
+            left: 50%;
+            /* Отступ в процентах от левого края окна */
+            right: 50%;
+            width: 450px;
+            /* Ширина блока */
+            height: 450px;
+            /* Высота блока */
+            position: absolute;
+            /* Абсолютное позиционирование блока */
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+            <div id="reg_modal" class="modal">
+                    <div class="modal-content">
+                    <h3>Регистрация</h3>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="login" type="text" class="validate">
+                            <label for="login">Логин</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Пароль</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="blog_name" type="text" class="validate">
+                            <label for="blog_name">Название книги</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="book_keywords_form" type="text" class="validate">
+                                <label for="keywords">Ключевые слова</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="birthday_form" type="text" class="datepicker">                          
+                                <label for="password">Дата рождения</label>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <a href="#!" class="modal-action waves-effect waves-red btn-flat" style="color:red;">Отмена<i class="material-icons right">delete</i></a>
+                    <a href="#!" id="reg_send_button" class="modal-action waves-effect waves-green btn-flat" style="color:green;">Отправить<i class="material-icons right">send</i></a>
+                    </div>
+                </div>
+            <div id="submit_modal" class="modal">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="login_input" type="text" class="validate">
+                            <label for="login_input">Ваш логин</label>
+                        </div>
+                        </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="password_input" type="password" class="validate">
+                            <label for="password_input">Ваш пароль</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" id="send_post_button" class="modal-action modal-close waves-effect waves-green btn-flat red">Отменить <i class="material-icons right">close</i></a>
+                    <a href="#!" id="send_post_button" class="modal-action modal-close waves-effect waves-green btn-flat green">Отправить <i class="material-icons right">send</i></a>
+                </div>
+            </div>
+          <div class="container">
+            <nav style="background: white;color:black;">
+                    <div class="nav-wrapper">
+                        <ul><i id="MENU_show" class="material-icons left" style="color:black;padding-left:10px;">arrow_back</i></ul>
+                        <a style="color: black; font-size: 120%;font-weight: bold;" class="brand-logo center">Intermental</a>
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                <li><a id="reg_button" style="color: black;" href="#">Регистрация</a></li>
+                            </ul>
+                    </div>
+                </nav>
+            </div>
+        <div class="container" style="padding-top:2%;">
+            <div class="row">
+                <div id="main_block">
+                    <div class="col s12" style="text-align:center;padding-top:7%;">
+                        <h4>Написать запись</h4>
+                    </div> 
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <input id="post_header" type="text">
+                        <label for="post_header">Заголовок</label>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div id="editor"></div>
+                        <div style="padding-top:2%;">
+                            <button id="add_post_button" class="btn waves-effect waves-light col s12 green" type="submit">Отправить
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script>$("#submit_modal").modal()</script>
+    <script src="js/main.js"></script>
+    <script src='js/nprogress.js'></script>
+    <script src='https://cdn.quilljs.com/1.3.4/quill.js'></script>
+    
+    <!-- Initialize Quill editor -->
+    <script>
+    $("#reg_modal").modal();
+      var quill = new Quill('#editor', {
+        theme: 'snow'
+      });
+    </script>
+</body>
+
+</html>

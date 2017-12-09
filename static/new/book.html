@@ -1,0 +1,152 @@
+<html>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width">
+            <title>intermental</title>
+            <link rel="shortcut icon" href="icon.png">
+            <link rel="stylesheet" type="text/css" href="css/semantic.min.css">
+            <link rel="stylesheet" type="text/css" href="css/main.css">
+            <link rel='stylesheet' href='css/nprogress.css'/> 
+            <link href="css/calendar.min.css" rel="stylesheet" type="text/css">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">            
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+            <script src="js/calendar.min.js"></script>
+            
+            <script src="js/semantic.min.js"></script>
+        </head>
+        <body>
+            <div class="ui container">
+                <div class="ui signup_modal modal">
+                        <i class="close icon"></i>
+                        <div class="header">
+                            Create new book
+                        </div>
+                        <div class="content">
+                            <div class="description">
+                            <div class="ui header">Complete this fields</div>
+                            <form class="ui form">
+                                    <div class="field">
+                                      <label>Book Name</label>
+                                      <div class="ui input left icon">
+                                            <i class="book icon"></i>
+                                            <input type="text" id="book_name_form" placeholder="Name of your book">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label>Password of your book</label>
+                                        <div class="ui input left icon">
+                                            <i class="terminal icon"></i>
+                                            <input type="password" id="book_password_form" placeholder="Your password">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                      <label>Your name</label>
+                                      <div class="ui input left icon">
+                                            <i class="user icon"></i>
+                                            <input type="text" id="book_author_form" placeholder="Your name">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                      <label>Keywords</label>
+                                      <div class="ui input left icon">
+                                        <i class="privacy icon"></i>
+                                        <input type="text" id="book_keywords_form" placeholder="Keywords used for search your book. Examples: best book, my life...">
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                      <label>Birthday</label>
+                                      <div class="ui calendar" id="birthday_calendar">
+                                            <div class="ui input left icon">
+                                              <i class="calendar icon"></i>
+                                              <input type="text" id="birthday_form" placeholder="Your Birthday">
+                                            </div>
+                                          </div>
+                                    </div>
+                                  </form>
+                                  <div id="signup_status_block"></div>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <div id="signup_erase_button" class="ui red left labeled icon button">
+                            Erase
+                            <i class="close icon"></i>
+                            </div>
+                            <div id="signup_completed_button" class="ui positive right labeled icon button">
+                            Create!
+                            <i class="checkmark icon"></i>
+                            </div>
+                            </div>
+                        </div>
+                  <div id="loader_block" style="top: 50%; position:absolute; left: 50%; right: 50%;">
+                        <div class="ui active inline loader"></div>
+                  </div>
+                  <div id="main_other_block" style="visibility:hidden;">
+                      <div id="menu_center_block">
+                        <div class="ui small menu">
+                                <div class="item">
+                                    <h4 id="menu_path"><strong>intermental|Books</strong></h4>
+                                  </div>
+                                <div class="right menu">
+                                  <div class="ui dropdown item">
+                                    Language <i class="dropdown icon"></i>
+                                    <div class="menu">
+                                      <a class="item"><i class="us flag"></i>English</a>
+                                      <a class="item"><i class="ru flag"></i>Russian</a>
+                                    </div>
+                                  </div>
+                                  <div class="item">
+                                      <div class="signup_button ui primary button">Create new book</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="ui pointing secondary menu">
+                                <a class="item active" data-tab="first">Book entries</a>
+                                <a class="item" data-tab="second">Book info</a>
+                              </div>
+                              <div class="ui bottom attached tab segment active" data-tab="first">
+                                <table class="ui very basic table">
+                                    <thead>
+                                    <tr>
+                                        <th>Entry name</th>
+                                        <th>Created date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="book_entries_list">
+                                    </tbody>
+                                </table>
+                              </div>
+                              <div class="ui bottom attached tab segment" data-tab="second">
+                                <p id="birthday_field" style="color:black;"><i class="fa fa-birthday-cake"></i><strong> День рождения: </strong></p>
+                                <p></p>
+                                <p id="created_field" style="color:black;"><i class="fa fa-check"></i><strong> Дата создания: </strong></p>
+                                <p></p>
+                                <p id="book_name_field" style="color:black;"><i class="fa fa-file-text"></i><strong> Название блога: </strong></p>
+                                <p></p>
+                                <p id="keywords_field" style="color:black;"><i class="fa fa-key"></i><strong> Ключевые слова: </strong></p>
+                                <p></p>
+                                <p id="book_posts_num_field" style="color:black;"><i class="fa fa-comments"></i><strong> Всего записей: </strong></p>
+                              </div>
+                  </div>                  
+            </div>
+            <div id="add_post_button_block">
+                <button id="add_post_button" onclick="window.location.href='page.html'" class="right floated red circular ui icon button">
+                    <i class="icon write"></i>
+                </button>
+            </div>
+            <script src="js/back.js"></script>
+            <script src="js/front.js"></script>
+            <script src='js/nprogress.js'></script>
+            <script> 
+                var current_book_name = getParameterByName("current_book");
+                // document.getElementById("menu_path").innerHTML+=current_book_name;
+                get_all_book_entries(current_book_name);
+                $("#loader_block").remove();
+                $('.menu .item').tab();
+                toggle('main_other_block', 'visible');
+            </script>
+            <script>
+            </script>
+        </body>
+    </html>
+    
