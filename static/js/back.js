@@ -26,7 +26,7 @@ function add_book(book_name, book_password, book_author, book_keywords, birhday)
     url: "/api/books",
     data: JSON.stringify({'book_name': book_name, 'book_password': book_password, 'book_author': book_author, 'book_keywords': book_keywords, 'birthday': birhday}),
     success: function(msg){
-      console.log("api - book added successfuly");
+      document.cookie = "book_name="+book_name+";path=/";
     }
  }); 
 }
@@ -34,7 +34,10 @@ function add_post_to_book(book_name, password, header, content){
   $.ajax({
     type: "POST",
     url: "/api/books/"+book_name+"/posts",
-    data: JSON.stringify({'password': password, 'header': header, 'content': content})
+    data: JSON.stringify({'password': password, 'header': header, 'content': content}),
+    success: function(data, textStatus, xhr) {
+      alert(xhr.status);
+    }
  }); 
 }
 function get_book_data(current_book){

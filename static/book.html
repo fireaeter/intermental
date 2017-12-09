@@ -84,9 +84,11 @@
                       <div id="menu_center_block">
                         <div class="ui small menu">
                                 <div class="item">
-                                    <h4 id="menu_path"><strong>intermental|Books</strong></h4>
+                                    <h4 id="menu_path"><strong><a style="color:teal;" href="index.html">intermental</a>|Books</strong></h4>
                                   </div>
                                 <div class="right menu">
+                                  <div class="ui item"><i id="night_button" class="ui moon icon"></i></div>
+                                  <div class="ui item"><i id="sync_posts_button" class="ui refresh icon"></i><strong><a style="color:red;" id="sync_posts_num"></a></strong></div>
                                   <div class="ui dropdown item">
                                     Language <i class="dropdown icon"></i>
                                     <div class="menu">
@@ -117,15 +119,15 @@
                                 </table>
                               </div>
                               <div class="ui bottom attached tab segment" data-tab="second">
-                                <p id="birthday_field" style="color:black;"><i class="fa fa-birthday-cake"></i><strong> День рождения: </strong></p>
+                                <p id="birthday_field" style="color:black;"><i class="fa fa-birthday-cake"></i><strong> Birthday: </strong></p>
                                 <p></p>
-                                <p id="created_field" style="color:black;"><i class="fa fa-check"></i><strong> Дата создания: </strong></p>
+                                <p id="created_field" style="color:black;"><i class="fa fa-check"></i><strong> Created date: </strong></p>
                                 <p></p>
-                                <p id="book_name_field" style="color:black;"><i class="fa fa-file-text"></i><strong> Название блога: </strong></p>
+                                <p id="book_name_field" style="color:black;"><i class="fa fa-file-text"></i><strong> Book name: </strong></p>
                                 <p></p>
-                                <p id="keywords_field" style="color:black;"><i class="fa fa-key"></i><strong> Ключевые слова: </strong></p>
+                                <p id="keywords_field" style="color:black;"><i class="fa fa-key"></i><strong> Keywords: </strong></p>
                                 <p></p>
-                                <p id="book_posts_num_field" style="color:black;"><i class="fa fa-comments"></i><strong> Всего записей: </strong></p>
+                                <p id="book_posts_num_field" style="color:black;"><i class="fa fa-comments"></i><strong> All posts num: </strong></p>
                               </div>
                   </div>                  
             </div>
@@ -138,6 +140,12 @@
             <script src="js/front.js"></script>
             <script src='js/nprogress.js'></script>
             <script> 
+                var sync_posts_num = get_sync_posts()[1];
+                if(sync_posts_num != undefined) {
+                    document.getElementById("sync_posts_num").innerHTML= sync_posts_num;
+                }else {
+                    document.getElementById("sync_posts_num").innerHTML= 0;
+                }
                 var current_book_name = getParameterByName("current_book");
                 // document.getElementById("menu_path").innerHTML+=current_book_name;
                 get_all_book_entries(current_book_name);
