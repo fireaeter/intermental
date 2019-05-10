@@ -161,6 +161,7 @@ class Chain(object):
                     'content': self.block.body.content,
                      'hash': self.block.sign
                 })
+                res.append(self.block.body.content)
             if i > offset + limit:
                 break
             self._init_block(self.meta[self.block.link].sign)

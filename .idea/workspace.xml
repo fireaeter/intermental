@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e046409b-1b71-4a4c-9f87-008e27c3c89f" name="Default" comment="" />
+    <list default="true" id="e046409b-1b71-4a4c-9f87-008e27c3c89f" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/router.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/book.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/calendar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/calendar.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/semantic.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/themes/default/assets/fonts/icons.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/themes/default/assets/fonts/icons.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/themes/default/assets/fonts/icons.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/themes/default/assets/fonts/icons.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/themes/default/assets/fonts/icons.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/themes/default/assets/fonts/icons.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/themes/default/assets/images/flags.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/back.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/calendar.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/front.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/semantic.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/validator.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/validator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/blockchain.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/blockchain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/exceptions.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -10,7 +38,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/views/search/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
@@ -18,6 +46,61 @@
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/controller.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/router.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/blockchain.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-268">
+              <caret line="158" selection-start-line="158" selection-end-line="158" />
+              <folding>
+                <element signature="e#24#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/exceptions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/validator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="71" selection-start-line="71" selection-end-line="71" />
             </state>
           </provider>
         </entry>
@@ -56,7 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/blockchain.py" />
         <option value="$PROJECT_DIR$/api/models.py" />
         <option value="$PROJECT_DIR$/api/views/app.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
@@ -73,18 +155,12 @@
         <option value="$PROJECT_DIR$/api/views/notes/models.py" />
         <option value="$PROJECT_DIR$/api/views/note/models.py" />
         <option value="$PROJECT_DIR$/api/views/note/view.py" />
-        <option value="$PROJECT_DIR$/api/validator.py" />
         <option value="$PROJECT_DIR$/api/route_table.py" />
         <option value="$PROJECT_DIR$/api/views/search/view.py" />
         <option value="$PROJECT_DIR$/api/views/search/models.py" />
         <option value="$PROJECT_DIR$/api/views/books/models.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+        <option value="$PROJECT_DIR$/lib/blockchain.py" />
+        <option value="$PROJECT_DIR$/api/validator.py" />
       </list>
     </option>
   </component>
@@ -111,19 +187,6 @@
               <item name="intermental" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="intermental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="intermental" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="intermental" type="b2602c69:ProjectViewProjectNode" />
-              <item name="intermental" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="note" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -132,6 +195,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../brancher/branches/view.py" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
@@ -166,7 +230,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="5" width="1366" height="763" extended-state="6" />
+    <frame x="0" y="-17" width="1366" height="785" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.109970674" />
@@ -214,7 +278,6 @@
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/.PyCharmCE2018.1/system/python_stubs/-1436281271/builtins.py" />
     <entry file="file://$PROJECT_DIR$/api/models.py" />
-    <entry file="file://$PROJECT_DIR$/api/router.py" />
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -222,35 +285,11 @@
     <entry file="file://$PROJECT_DIR$/api/views/entry/models.py" />
     <entry file="file://$PROJECT_DIR$/api/views/entries/models.py" />
     <entry file="file://$PROJECT_DIR$/api/views/book/views.py" />
-    <entry file="file://$PROJECT_DIR$/lib/exceptions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/views/imports.py" />
     <entry file="file://$PROJECT_DIR$/api/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/blockchain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1955">
-          <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
-          <folding>
-            <element signature="e#24#33#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -332,13 +371,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/validator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="66" column="18" selection-start-line="66" selection-start-column="18" selection-end-line="66" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/route_table.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -380,6 +412,49 @@
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/router.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/blockchain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-268">
+          <caret line="158" selection-start-line="158" selection-end-line="158" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/exceptions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/validator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
         </state>
       </provider>
     </entry>
