@@ -1,0 +1,3 @@
+IPFS_HOST = "127.0.0.1"
+IPFS_PORT = 5001
+IPFS_ROOT_PATH = "/intermental"
