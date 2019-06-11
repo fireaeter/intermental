@@ -3,6 +3,7 @@ import api.config as config
 from aiohttp import web
 from api.route_table import add_routes
 
+ipfs_exceptions: ipfsapi.exceptions = ipfsapi.exceptions
 ipfs_client: ipfsapi.Client = ipfsapi.connect(config.IPFS_HOST, config.IPFS_PORT)
 
 app = web.Application()

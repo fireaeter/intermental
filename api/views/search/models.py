@@ -1,12 +1,12 @@
-import ujson
 import re
+import attr
+from api.views.book.models import Book
 from api.views.books.models import Books
-from dataclasses import dataclass
 
 
-@dataclass
+@attr.s(slots=True)
 class Search:
-    query: str
+    query: str = attr.s()
 
     async def search(self):
         self.query = self.query.lower()
@@ -14,7 +14,9 @@ class Search:
         books_list = await books.get_names()
         response = []
         pattern = re.compile(self.query)
-        for book in books_list:
-            if pattern.search(book.lower()) is not None:
-                response.append(book)
+        for name in books_list:
+            if pattern.search(name.lower()) is not None:
+                book = Book(name=name)
+                info = await book.get_first_block()
+                response.append(info)
         return response

@@ -1,20 +1,21 @@
-import ujson
-import api.views.dataObjects as dataObjects
-from dataclasses import dataclass
+import attr
 from api.app import ipfs_client
 from lib.blockchain import Chain
 from lib.exceptions import BlockchainException
 
 
-@dataclass
+@attr.s
 class Notes:
     import api.views.book.models as book_models
-    book: book_models.Book = book_models.Book()
+    book: book_models.Book = attr.ib(default=book_models.Book())
 
     async def get(self):
         if not await self.book.check_exists():
             return None
-        chain = Chain(ipfs_client, self.book.ipfs_path)
-        book_notes = chain.get_range()
-        return book_notes
+        try:
+            chain = Chain(ipfs_client, self.book.ipfs_path)
+            notes_list = chain.get_range(10, 0)
+            return notes_list
+        except BlockchainException:
+            return None
 

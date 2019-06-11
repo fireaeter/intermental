@@ -1,6 +1,15 @@
 # CHANGELOG
-
-#1.3
+# 1.4
+ - Вместо `dataclasses` используются `attrs`
+ - Все операции с blockchain "обернуты" в  `try/except`
+ - Функция `check_json_data` вынесена в отдельный файл `/api/helpers/check_json_data.py`
+ - Для поиска теперь нужно отправлять `POST`, а не `GET` запрос
+ - Добавлен валидатор для `book keywords`
+ - Можно прочитать `book note` по ipfs хешу `GET /note/note_ipfs_hash`
+ - Добавлена система ошибок в `errors.py`
+ - Вынесены часто используемые валидаторы(check_book_name, check_book_password) в `/api/validator.py`
+ - Рефакторинг кода
+# 1.3
 Переписан почти весь код
 
 

@@ -1,39 +1,42 @@
-import ujson
+import attr
+import calendar
+import time
 import api.config as config
-from dataclasses import dataclass, field
 from typing import List
 
 
-@dataclass
+@attr.s(slots=True)
 class Book:
-    name: str = None
-    password: str = None
-    created: int = None
-    author: str = None
-    birthday: str = None
-    keywords: List = field(default_factory=list)
+    name: str = attr.ib(default=None)
+    password: str = attr.ib(default=None)
+    description: str = attr.ib(default=None)
+    created: int = attr.ib(default=calendar.timegm(time.gmtime()))
+    author: str = attr.ib(default=None)
+    ipfs_path = attr.ib(init=False)
+    keywords: List = attr.ib(factory=list)
 
-    def __post_init__(self):
+    # or set it to default
+    def __attrs_post_init__(self):
         self.ipfs_path: str = config.IPFS_ROOT_PATH + "/%s" % self.name
 
-    def get_dict(self):
-        resp = ujson.loads(ujson.dumps(self))
-        del resp['password']
-        return resp
 
-
-@dataclass
+@attr.s(slots=True)
 class IpfsBlock:
-    Blocks: int = None
-    CumulativeSize: int = None
-    Name: str = None
-    Type: int = None
-    Size: int = None
-    Hash: str = None
+    Name: str = attr.ib()
+    Type: int = attr.ib()
+    Size: int = attr.ib()
+    Hash: str = attr.ib()
+    Blocks: int = attr.ib(default=None)
+    CumulativeSize: int = attr.ib(default=None)
 
 
-@dataclass
+@attr.s
+class IpfsBlockList:
+    blocks = attr.ib()
+
+
+@attr.s(slots=True)
 class Note:
-    header: str = None
-    content: str = None
-    date: int = None
+    header: str = attr.ib()
+    content: str = attr.ib()
+    created: int = attr.ib(default=calendar.timegm(time.gmtime()))

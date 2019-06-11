@@ -1,32 +1,37 @@
-import ujson
+import attr
 import api.views.dataObjects as dataObjects
 from api.app import ipfs_client
 from lib.blockchain import Chain
 from lib.exceptions import BlockchainException
 
 
+@attr.s(slots=True)
 class Book(dataObjects.Book):
     async def check_exists(self) -> bool:
         import api.views.books.models as books_models
         books = books_models.Books()
-        books_list = await books.get()
-        for key in books_list:
-            book = books_list[key]
-            if book.Name == self.name:
-                return True
-        return False
+        books_list = await books.get_names()
+        return True if self.name in books_list else False
+
+    async def get_first_block(self):
+        if not await self.check_exists():
+            return None
+        try:
+            chain = Chain(ipfs_client, self.ipfs_path)
+            info = chain.get_range(1, 0)
+            return info
+        except BlockchainException:
+            return None
 
     async def get_info(self):
-        exists = await self.check_exists()
-        if not exists:
+        if not await self.check_exists():
             return None
         from api.views.notes.models import Notes
-        notes = Notes(self)
+        notes = Notes(book=self)
         notes_list = await notes.get()
         notes_length = 0 if notes_list is None else len(notes_list)
-        chain = Chain(ipfs_client, self.ipfs_path)
         info = {
-            'book': chain.get_range(1, 0),
+            'book': await self.get_first_block(),
             'notes': {
                 'total': notes_length
             },
@@ -38,7 +43,10 @@ class Book(dataObjects.Book):
         if await self.check_exists():
             return False
         ipfs_client.files_mkdir(self.ipfs_path)
-        chain = Chain(ipfs_client, self.ipfs_path, self.password)
-        data = self.get_dict()
-        chain.add(data=data)
-        return True
+        try:
+            chain = Chain(ipfs_client, self.ipfs_path, self.password)
+            data = attr.asdict(self, filter=attr.filters.exclude(attr.fields(Book).password))
+            chain.add(data=data)
+            return True
+        except BlockchainException:
+            return False
