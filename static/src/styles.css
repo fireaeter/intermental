@@ -1,0 +1,24 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+  } */
+  
+  body {
+    /* background: var(--primaryBg); */
+    /* color: var(--primaryText); */
+    /* font-weight: 400; */
+  }
+  
+  button {
+    cursor: pointer;
+    border: 0;
+    background: none;
+    outline: none;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  

@@ -156,12 +156,10 @@ class Chain(object):
         self._init_block()
         for i in range(length):
             if i >= offset and i < offset + limit:
-                print(self.block.sign)
                 res.append({
                     'content': self.block.body.content,
-                     'hash': self.block.sign
+                    'hash': self.block.sign
                 })
-                res.append(self.block.body.content)
             if i > offset + limit:
                 break
             self._init_block(self.meta[self.block.link].sign)
@@ -182,13 +180,15 @@ class Chain(object):
             raise BlockchainException("Data structure violation")
 
     def _get_block(self, file: str) -> Block:
-        string = self.ipfs.files_read("{}/{}".format(self.ipfs_dir, file))
+        try:
+            string = self.ipfs.files_read("{}/{}".format(self.ipfs_dir, file))
+        except ipfsapi.exceptions.ErrorResponse:
+            raise RuntimeException(ipfsapi.exceptions.ErrorResponse)
         _dict = json.loads(string)
         blk = Block(_dict['body'])
         blk.link = _dict['link']
         blk.date = _dict['date']
         blk.sign = _dict['sign']
-        # print(blk.sign)
         return blk
 
     def _write(self, blk: Block):
@@ -200,8 +200,7 @@ class Chain(object):
             "body": blk.body.content,
             "sign": blk.body.sign
         }).encode())
-        print('path->>>', path)
-        print(self.ipfs_dir)
-        print(file_name)
+        print("BLOCK")
+        print(blk.body)
         self.ipfs.files_write(path, bytesio, create=True)
         self.meta[blk.link] = _Meta(blk.body.sign, file_name + ".json")

@@ -6,7 +6,7 @@ from api.views.books.models import Books
 
 @attr.s(slots=True)
 class Search:
-    query: str = attr.s()
+    query: str = attr.ib()
 
     async def search(self):
         self.query = self.query.lower()
